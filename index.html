@@ -81,6 +81,16 @@
           event.target.classList.add('green')
         }
       } else if (event.target.classList.contains('delete')) {
+        console.log(event.target.parentNode.dataset.item)
+
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].text === event.target.parentNode.dataset.item) {
+            items.splice(i, 1)
+          }
+        }
+        
+        localStorage.setItem('items', JSON.stringify(items))
+        
         event.target.parentNode.remove()
       }
     })
