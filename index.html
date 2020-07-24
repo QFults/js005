@@ -27,7 +27,11 @@
       event.preventDefault()
       let itemElem = document.createElement('li')
       itemElem.className = 'todo'
-      itemElem.textContent = document.getElementById('item').value
+      // itemElem.textContent = document.getElementById('item').value
+      itemElem.innerHTML = `
+        ${document.getElementById('item').value}
+        <button class="delete">x</button>
+      `
       document.getElementById('items').append(itemElem)
       document.getElementById('item').value = ''
     })
@@ -39,6 +43,8 @@
         } else {
           event.target.classList.add('green')
         }
+      } else if (event.target.classList.contains('delete')) {
+        event.target.parentNode.remove()
       }
     })
 
