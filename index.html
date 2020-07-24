@@ -23,8 +23,26 @@
   <ul id="items"></ul>
   <script>
 
+    let items = JSON.parse(localStorage.getItem('items')) || []
+
+    for (let i = 0; i< items.length; i++) {
+      let itemElem = document.createElement('li')
+      itemElem.className = 'todo'
+      itemElem.innerHTML = `
+        ${items[i].text}
+        <button class="delete">x</button>
+      `
+      document.getElementById('items').append(itemElem)
+    }
+
     document.getElementById('addItem').addEventListener('click', event => {
       event.preventDefault()
+      let itemObj = {
+        text: document.getElementById('item').value,
+        isDone: false
+      }
+      items.push(itemObj)
+      localStorage.setItem('items', JSON.stringify(items))
       let itemElem = document.createElement('li')
       itemElem.className = 'todo'
       // itemElem.textContent = document.getElementById('item').value
