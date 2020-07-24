@@ -27,7 +27,15 @@
 
     for (let i = 0; i< items.length; i++) {
       let itemElem = document.createElement('li')
-      itemElem.className = 'todo'
+
+      itemElem.dataset.item = items[i].text
+      
+      if (items[i].isDone) {
+        itemElem.className = 'todo green'
+      } else {
+        itemElem.className = 'todo'
+      }
+
       itemElem.innerHTML = `
         ${items[i].text}
         <button class="delete">x</button>
@@ -44,6 +52,7 @@
       items.push(itemObj)
       localStorage.setItem('items', JSON.stringify(items))
       let itemElem = document.createElement('li')
+      itemElem.dataset.item = document.getElementById('item').value
       itemElem.className = 'todo'
       // itemElem.textContent = document.getElementById('item').value
       itemElem.innerHTML = `
@@ -56,6 +65,7 @@
 
     document.addEventListener('click', event => {
       if (event.target.classList.contains('todo')) {
+        // console.log(event.target.textContent)
         if (event.target.classList.contains('green')) {
           event.target.classList.remove('green')
         } else {
