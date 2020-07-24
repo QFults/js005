@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .green {
+      color: green;
+    }
+  </style>
 </head>
 <body>
   <form>
@@ -28,8 +33,12 @@
     })
 
     document.addEventListener('click', event => {
-      if (event.target.className === 'todo') {
-        
+      if (event.target.classList.contains('todo')) {
+        if (event.target.classList.contains('green')) {
+          event.target.classList.remove('green')
+        } else {
+          event.target.classList.add('green')
+        }
       }
     })
 
