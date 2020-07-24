@@ -20,7 +20,11 @@
 
     document.getElementById('addItem').addEventListener('click', event => {
       event.preventDefault()
-      
+      let itemElem = document.createElement('li')
+      itemElem.className = 'todo'
+      itemElem.textContent = document.getElementById('item').value
+      document.getElementById('items').append(itemElem)
+      document.getElementById('item').value = ''
     })
 
   </script>
